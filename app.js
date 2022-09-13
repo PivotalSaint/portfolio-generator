@@ -5,12 +5,12 @@ var message = 'Hello Node!';
 // old school way
 // var sum = 60 + 9 + (commandLineArgs);
 
-var commandLineArgs = process.argv;
+// var commandLineArgs = process.argv;
 // const profileDataArgs = process.argv.slice(2, process.argv.length);
-console.log(profileDataArgs);
-console.log(commandLineArgs);
-console.log(message);
-console.log(sum);
+// console.log(profileDataArgs);
+//console.log(commandLineArgs);
+//console.log(message);
+//console.log(sum);
 // notice the lack of parentheses around the `profileDataArr` parameter?
 
 // const printProfileData = profileDataArr => {
