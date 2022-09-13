@@ -1,6 +1,7 @@
-console.log('Hello World!');
+const fs= require('fs');
+// console.log('Hello World!');
 
-var message = 'Hello Node!';
+// var message = 'Hello Node!';
 
 // old school way
 // var sum = 60 + 9 + (commandLineArgs);
@@ -93,12 +94,21 @@ const generatePage = (name, github) => {
 
 
 // added this console log in 9.2.4 
-console.log(name, github);
+// console.log(name, github);
 
 // in terminal write node app 'pivotal' 'pivotal saint' 
 // this acts as arg 1 and arg 2 but instead of hardcoding our names in js
 // we coded them as variables, and created dynamic paging in term with arguments passed
-console.log(generatePage(name, github));
+// console.log(generatePage(name, github));
+
+// added this 9.2.5
+// When an arrow function has one argument, parentheses are optional. 
+// However, when there are no arguments—or more than one—parentheses are necessary.
+fs.writeFile('index.html', generatePage(name, github), err => {
+  if (err) throw err;
+
+  console.log('Portfolio complete! Check out index.html to see the output!');
+});
 
 // For challenge
 // node index.js will be used to call your project
