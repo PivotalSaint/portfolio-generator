@@ -1,6 +1,6 @@
 //added this in 9.3.5
-const fs = require('fs');
 const inquirer = require('inquirer');
+const fs = require('fs');
 const generatePage = require('./src/page-template');
 
 const promptUser = () => {
@@ -147,7 +147,7 @@ promptUser()
   .then(portfolioData => {
     const pageHTML = generatePage(portfolioData);
 
-    fs.writeFile('index.html', generatePage(name, github), err => {
+    fs.writeFile('./index.html', pageHTML, err => {
       if (err) throw new Error(err);
 
       console.log('Portfolio complete! Check out index.html to see the output!');
@@ -256,11 +256,6 @@ promptUser()
 // added this 9.2.5
 // When an arrow function has one argument, parentheses are optional. 
 // However, when there are no arguments—or more than one—parentheses are necessary.
-fs.writeFile('index.html', generatePage(name, github), err => {
-  if (err) throw err;
-
-  console.log('Portfolio complete! Check out index.html to see the output!');
-});
 
 // added package lock.json and pack.json in mod 9.3.4
 
