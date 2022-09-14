@@ -1,4 +1,4 @@
-const generateSite = require('./utils/generate-site.js');
+const fs =require('fs');
 // this is my first js promise mod 9.5.4
 const { resolve } = require('path');
 
