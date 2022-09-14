@@ -1,5 +1,7 @@
 //added this in 9.3.5
+const fs = require('fs');
 const inquirer = require('inquirer');
+const generatePage = require('./src/page-template');
 
 const promptUser = () => {
   return inquirer.prompt([
@@ -39,7 +41,7 @@ const promptUser = () => {
       type: 'input',
       name: 'about',
       message: 'Provide some information about yourself:',
-      when: ({confirmAbout}) => {
+      when: ({ confirmAbout }) => {
         if (confirmAbout) {
           return true;
         } else {
@@ -130,19 +132,26 @@ Add a New Project
       default: false
     }
   ])
-  .then(projectData => {
-    portfolioData.projects.push(projectData);
-    if (projectData.confirmAddProject){
-      return promptProject(portfolioData);
-    } else {
-      return portfolioData;
-    }
-  });
+    .then(projectData => {
+      portfolioData.projects.push(projectData);
+      if (projectData.confirmAddProject) {
+        return promptProject(portfolioData);
+      } else {
+        return portfolioData;
+      }
+    });
 };
+
 promptUser()
   .then(promptProject)
   .then(portfolioData => {
-    console.log(portfolioData);
+    const pageHTML = generatePage(portfolioData);
+
+    fs.writeFile('index.html', generatePage(name, github), err => {
+      if (err) throw new Error(err);
+
+      console.log('Portfolio complete! Check out index.html to see the output!');
+    });
   });
 
 // const fs= require('fs');
@@ -183,33 +192,33 @@ promptUser()
 
 // notice the lack of parentheses around the `profileDataArr` parameter?
 // const printProfileData = profileDataArr => {
-    // for (let i < 0)
-    // console.log(profileDataArr);
+// for (let i < 0)
+// console.log(profileDataArr);
 // };
 
 // printProfileData(profileDataArgs);
 
 // Using Function expression syntax
 // const addNums = function(numOne, numTwo) {
-    // return numOne + numTwo;
+// return numOne + numTwo;
 // };
 
 // Using new arrow function syntax
 // const addNums = (numOne, numTwo) => {
-    // return numOne + numTwo;
+// return numOne + numTwo;
 // };
 // const profileDataArgs = process.argv.slice(2);
 
 // const printProfileData = profileDataArr => {
-  // This...
-  //for (let i = 0; i < profileDataArr.length; i += 1) {
-    //console.log(profileDataArr[i]);
-  //}
+// This...
+//for (let i = 0; i < profileDataArr.length; i += 1) {
+//console.log(profileDataArr[i]);
+//}
 
-  //console.log('================');
+//console.log('================');
 
-  // Is the same as this...
-  //profileDataArr.forEach(profileItem => console.log(profileItem));
+// Is the same as this...
+//profileDataArr.forEach(profileItem => console.log(profileItem));
 
 // With ES6, we can use a feature called template literals to embed JavaScript expressions into the string.
 // Template literals are enclosed by backticks (`) instead of double or single quotes.
@@ -225,10 +234,10 @@ promptUser()
 // re-created multi-line input from previous const example above line
 // we coded this out and did an html for the below line
 //const generatePage = (userName, githubName) => {
-  //return `
-    //Name: ${userName}
-   // GitHub: ${githubName}
- // `;
+//return `
+//Name: ${userName}
+// GitHub: ${githubName}
+// `;
 //};
 
 // we cut this generate page function and moved it to page-template.js
@@ -247,11 +256,11 @@ promptUser()
 // added this 9.2.5
 // When an arrow function has one argument, parentheses are optional. 
 // However, when there are no arguments—or more than one—parentheses are necessary.
-// fs.writeFile('index.html', generatePage(name, github), err => {
-  // if (err) throw err;
+fs.writeFile('index.html', generatePage(name, github), err => {
+  if (err) throw err;
 
-  // console.log('Portfolio complete! Check out index.html to see the output!');
-// });
+  console.log('Portfolio complete! Check out index.html to see the output!');
+});
 
 // added package lock.json and pack.json in mod 9.3.4
 
