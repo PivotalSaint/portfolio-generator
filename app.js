@@ -1,5 +1,23 @@
-const fs= require('fs');
-const generatePage = require('./src/page-template.js');
+//added this in 9.3.5
+const inquirer = require('inquirer');
+
+const promptUser = () => {
+  return inquirer.prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'What is your name?'
+    }
+  ]);
+};
+
+promptUser().then(answers => console.log(answers));
+// const fs= require('fs');
+// const generatePage = require('./src/page-template.js');
+
+// added this mod 9.3.5 for inquirer
+// make sure you do .gitignore before installing node mods and add node_modules to .gitignore
+
 // console.log('Hello World!');
 
 // var message = 'Hello Node!';
@@ -8,7 +26,8 @@ const generatePage = require('./src/page-template.js');
 // var sum = 60 + 9 + (commandLineArgs);
 
 // var commandLineArgs = process.argv;
-const profileDataArgs = process.argv.slice(2, process.argv.length);
+// took this out in mod 9.3.5
+// const profileDataArgs = process.argv.slice(2, process.argv.length);
 
 // added this after module 9.2.4
 //these two simplified
@@ -16,14 +35,20 @@ const profileDataArgs = process.argv.slice(2, process.argv.length);
 //const github = profileDataArgs[1];
 
 // simplified version of above 
-const [name, github] = profileDataArgs;
+// took this out in mod 9.3.5
+// const [name, github] = profileDataArgs;
 
+//added this console log 9.3.5 to check to see if inquirer is available 
+// succesful in running inquirer so removed it
+// console.log(inquirer);
+
+// took these all out 9.1.8
 // console.log(profileDataArgs);
 //console.log(commandLineArgs);
 //console.log(message);
 //console.log(sum);
-// notice the lack of parentheses around the `profileDataArr` parameter?
 
+// notice the lack of parentheses around the `profileDataArr` parameter?
 // const printProfileData = profileDataArr => {
     // for (let i < 0)
     // console.log(profileDataArr);
@@ -89,11 +114,13 @@ const [name, github] = profileDataArgs;
 // added this 9.2.5
 // When an arrow function has one argument, parentheses are optional. 
 // However, when there are no arguments—or more than one—parentheses are necessary.
-fs.writeFile('index.html', generatePage(name, github), err => {
-  if (err) throw err;
+// fs.writeFile('index.html', generatePage(name, github), err => {
+  // if (err) throw err;
 
-  console.log('Portfolio complete! Check out index.html to see the output!');
-});
+  // console.log('Portfolio complete! Check out index.html to see the output!');
+// });
+
+// added package lock.json and pack.json in mod 9.3.4
 
 // For challenge
 // node index.js will be used to call your project
