@@ -66,7 +66,7 @@ Add a New Project
         if (nameInput) {
           return true;
         } else {
-          console.log('Please provide name of project!');
+          console.log('Please provide name of project !');
           return false;
         }
       }
